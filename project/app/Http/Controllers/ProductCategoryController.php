@@ -30,21 +30,21 @@ class ProductCategoryController extends Controller
         return response()->json(ProductCategoryResource::make($productCategory), 201);
     }
 
-    public function update(ProductCategoryRequest $request, ProductCategory $productCategory): JsonResponse
+    public function update(ProductCategoryRequest $request, ProductCategory $products_category): JsonResponse
     {
         $productCategoryData = (new ProductCategoryAdapter())->handle($request->validated());
-        $productCategory = (new UpdateProductCategoryAction())->execute($productCategory, $productCategoryData);
+        $productCategory = (new UpdateProductCategoryAction())->execute($products_category, $productCategoryData);
         return response()->json(ProductCategoryResource::make($productCategory), 200);
     }
 
-    public function show(ProductCategory $productCategory): JsonResponse
+    public function show(ProductCategory $products_category): JsonResponse
     {
-        return response()->json(ProductCategoryResource::make($productCategory), 200);
+        return response()->json(ProductCategoryResource::make($products_category), 200);
     }
 
-    public function destroy(ProductCategory $productCategory): JsonResponse
+    public function destroy(ProductCategory $products_category): JsonResponse
     {
-        $productCategory->deleteOrFail();
+        $products_category->deleteOrFail();
         return response()->json(['message'=>'deleted entity'], 200);
     }
 }
