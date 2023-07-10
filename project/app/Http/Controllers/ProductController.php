@@ -8,6 +8,7 @@ use App\Domains\Product\Adapters\ProductAdapter;
 use App\Domains\Product\Models\Product;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
+use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -35,5 +36,16 @@ class ProductController extends Controller
         $productData = (new ProductAdapter())->handle($request->validated());
         $product = (new UpdateProductAction())->execute($product, $productData);
         return ProductResource::make($product);
+    }
+
+    public function show(Product $product): JsonResponse
+    {
+        return response()->json(ProductResource::make($product), 200);
+    }
+
+    public function destroy(Product $product): JsonResponse
+    {
+        $product->deleteOrFail();
+        return response()->json(['message'=>'deleted entity'], 200);
     }
 }
