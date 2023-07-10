@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Função para iniciar o ambiente Docker
+start() {
+  echo "Iniciando o ambiente Docker..."
+  docker compose up -d
+}
+
+# Função para parar o ambiente Docker
+stop() {
+  echo "Parando o ambiente Docker..."
+  docker compose down
+}
+
+# Função para limpar o ambiente Docker (parar e remover os containers)
+clean() {
+  echo "Limpando o ambiente Docker..."
+  docker compose down --volumes --remove-orphans
+}
+
+# Verifica o argumento passado ao script
+case "$1" in
+  "start")
+    start
+    ;;
+  "stop")
+    stop
+    ;;
+  "clean")
+    clean
+    ;;
+  *)
+    echo "Uso: ./laravel-docker [start|stop|clean]"
+    exit 1
+    ;;
+esac
+
+exit 0

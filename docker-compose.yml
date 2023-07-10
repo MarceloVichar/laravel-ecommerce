@@ -1,0 +1,29 @@
+version: '3'
+
+volumes:
+  app-postgres-data:
+    driver: local
+
+services:
+  app:
+    image: webdevops/php-nginx:8.1-alpine
+    volumes:
+      - ./project:/var/www/app
+    working_dir: /var/www/app
+    ports:
+      - 80:80
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/app/public
+      - PHP_MEMORY_LIMIT=64M
+      - php.opcache.enable_cli=1
+
+  postgres:
+    image: postgres:15-alpine
+    volumes:
+      - app-postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_DB=app_dev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=laraveldocker
