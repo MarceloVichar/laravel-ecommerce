@@ -12,7 +12,8 @@ class ProductAdapter
             data_get($data, 'name'),
             data_get($data, 'description'),
             data_get($data, 'value_cents'),
-            data_get($data, 'available_quantity')
+            data_get($data, 'available_quantity'),
+            data_get($data, 'category_id'),
         );
     }
 }

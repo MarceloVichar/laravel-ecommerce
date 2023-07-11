@@ -4,6 +4,7 @@ namespace App\Domains\Product\Actions;
 
 use App\Domains\Product\Models\Product;
 use App\Domains\Product\Data\ProductData;
+use App\Models\ProductCategory;
 
 class CreateProductAction
 {

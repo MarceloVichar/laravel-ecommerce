@@ -11,7 +11,8 @@ class Product extends BaseProduct
         'name',
         'description',
         'value_cents',
-        'available_quantity'
+        'available_quantity',
+        'category_id'
     ];
 
     public function category()

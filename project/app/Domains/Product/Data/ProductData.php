@@ -8,7 +8,8 @@ class ProductData
         public string $name,
         public string $description,
         public int    $valueCents,
-        public int    $availableQuantity = 1
+        public int    $availableQuantity = 1,
+        public ?int $category_id = null
     )
     {
     }
@@ -19,7 +20,8 @@ class ProductData
             'name' => $this->name,
             'description' => $this->description,
             'value_cents' => $this->valueCents,
-            'available_quantity' => $this->availableQuantity
+            'available_quantity' => $this->availableQuantity,
+            'category_id' => $this->category_id
         ];
     }
 }
