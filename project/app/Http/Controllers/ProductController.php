@@ -8,20 +8,15 @@ use App\Domains\Product\Adapters\ProductAdapter;
 use App\Domains\Product\Models\Product;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
+use App\Support\PaginationBuilder;
 use Illuminate\Http\JsonResponse;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(): PaginationBuilder
     {
-        return QueryBuilder::for(Product::class)
-            ->allowedFilters([
-                AllowedFilter::exact('id'),
-                AllowedFilter::exact('name'),
-            ])
-            ->paginate(10);
+        return PaginationBuilder::for(Product::class)
+            ->resource(ProductResource::class);
     }
 
     public function store(ProductRequest $request)
