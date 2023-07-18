@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/companies', CompanyController::class);
     Route::apiResource('/products', ProductController::class);
     Route::apiResource('/products-categories', \App\Http\Controllers\ProductCategoryController::class);
 });
-
