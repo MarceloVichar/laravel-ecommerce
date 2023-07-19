@@ -19,6 +19,10 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'show']);
+    Route::put('/profile', [\App\Http\Controllers\ProfileController::class, 'update']);
+
     Route::apiResource('/companies', CompanyController::class);
 
     Route::apiResource('/products', ProductController::class);
