@@ -20,6 +20,12 @@ Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/companies', CompanyController::class);
+
     Route::apiResource('/products', ProductController::class);
+
     Route::apiResource('/products-categories', \App\Http\Controllers\ProductCategoryController::class);
+
+    Route::apiResource('/customers', \App\Http\Controllers\CustomerController::class);
+
+    Route::apiResource('/admins', \App\Http\Controllers\AdminController::class);
 });

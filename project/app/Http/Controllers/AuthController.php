@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Users\CreateUserAction;
 use App\Domains\Auth\Actions\LoginAction;
-use App\Domains\Auth\Actions\RegisterAction;
 use App\Domains\Auth\Adapters\LoginAdapter;
 use App\Domains\Auth\Adapters\RegisterAdapter;
+use App\Enums\UserRolesEnum;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
@@ -31,7 +32,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $registerData = (new RegisterAdapter())->handle($request->validated());
-        $user = (new RegisterAction())->execute($registerData);
+        $user = (new CreateUserAction())->execute($registerData->toArray(), UserRolesEnum::CUSTOMER);
         return response()->json([UserResource::make($user)], 201);
     }
 }

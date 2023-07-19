@@ -3,6 +3,7 @@
 namespace App\Actions\Companies;
 
 use App\Domains\Auth\Models\User;
+use App\Enums\UserRolesEnum;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,6 +20,7 @@ class CreateCompanyAction
                 'name' => $data['owner_name'],
                 'email' => $data['owner_email'],
                 'password' => $data['owner_password'],
+                'role' => UserRolesEnum::COMPANY_ADMIN
             ]);
             $owner->save();
 

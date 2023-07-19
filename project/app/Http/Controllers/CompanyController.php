@@ -9,6 +9,7 @@ use App\Http\Resources\CompanyResource;
 use App\Models\Company;
 use App\Support\PaginationBuilder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -40,7 +41,19 @@ class CompanyController extends Controller
 
     public function destroy(Company $company): JsonResponse
     {
-        $company->deleteOrFail();
-        return response()->json(['message'=>'deleted entity'], 200);
+        try {
+            DB::beginTransaction();
+
+            $company->owner()->delete();
+            $company->deleteOrFail();
+
+            DB::commit();
+
+            return response()->json(['message' => 'Company and owner user successfully deleted.'], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return response()->json(['message' => 'Failed to delete company and owner user.'], 500);
+        }
     }
 }
