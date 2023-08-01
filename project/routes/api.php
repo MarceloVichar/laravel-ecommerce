@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +25,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/companies', CompanyController::class);
 
     Route::apiResource('/products', ProductController::class);
-
     Route::apiResource('/products-categories', \App\Http\Controllers\ProductCategoryController::class);
 
     Route::apiResource('/customers', \App\Http\Controllers\CustomerController::class);
-
     Route::apiResource('/admins', \App\Http\Controllers\AdminController::class);
+
+    Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show']);
+    Route::put('/cart/finish', [\App\Http\Controllers\CartController::class, 'finish']);
+    Route::delete('/cart', [\App\Http\Controllers\CartController::class, 'destroy']);
+
+    Route::apiResource('/cart/items', \App\Http\Controllers\CartItemController::class)
+        ->only(['show', 'update', 'delete']);
+
 });

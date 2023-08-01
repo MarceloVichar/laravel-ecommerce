@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Cart\AddProductToCartAction;
 use App\Domains\Product\Actions\CreateProductAction;
 use App\Domains\Product\Actions\UpdateProductAction;
 use App\Domains\Product\Adapters\ProductAdapter;
 use App\Domains\Product\Models\Product;
+use App\Http\Requests\OrderItemRequest;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Support\PaginationBuilder;
@@ -44,5 +46,12 @@ class ProductController extends Controller
     {
         $product->deleteOrFail();
         return response()->json(['message'=>'deleted entity'], 200);
+    }
+
+    public function addToCart(OrderItemRequest $request, Product $product): JsonResponse
+    {
+        $data = $request->validated();
+        (new AddProductToCartAction())->execute($data, $product);
+        return response()->json(['message'=>'product added to cart'], 200);
     }
 }
