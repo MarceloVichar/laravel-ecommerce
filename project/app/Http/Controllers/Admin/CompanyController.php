@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\Companies\CreateCompanyAction;
+use App\Actions\Companies\DestroyCompanyAction;
 use App\Actions\Companies\UpdateCompanyAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Resources\CompanyResource;
 use App\Models\Company;
@@ -41,19 +43,7 @@ class CompanyController extends Controller
 
     public function destroy(Company $company): JsonResponse
     {
-        try {
-            DB::beginTransaction();
-
-            $company->owner()->delete();
-            $company->deleteOrFail();
-
-            DB::commit();
-
-            return response()->json(['message' => 'Company and owner user successfully deleted.'], 200);
-        } catch (\Exception $e) {
-            DB::rollback();
-
-            return response()->json(['message' => 'Failed to delete company and owner user.'], 500);
-        }
+        (new DestroyCompanyAction())->execute($company);
+        return response()->json(['message' => 'Entity deleted'], 200);
     }
 }

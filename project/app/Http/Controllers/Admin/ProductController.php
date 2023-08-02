@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\Cart\AddProductToCartAction;
 use App\Domains\Product\Actions\CreateProductAction;
 use App\Domains\Product\Actions\UpdateProductAction;
 use App\Domains\Product\Adapters\ProductAdapter;
 use App\Domains\Product\Models\Product;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderItemRequest;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;

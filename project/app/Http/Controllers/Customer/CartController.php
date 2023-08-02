@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
 use App\Actions\Cart\DeleteOrderAction;
 use App\Actions\Cart\FinishOrderAction;
 use App\Actions\Cart\GetCartAction;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
 use Illuminate\Http\JsonResponse;
 

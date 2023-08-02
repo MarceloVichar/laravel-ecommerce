@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/project/tests" isTestSource="true" packagePrefix="Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/spatie/laravel-package-tools" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/spatie/laravel-query-builder" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/laravel/prompts" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

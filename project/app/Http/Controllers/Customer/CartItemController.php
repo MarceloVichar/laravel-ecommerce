@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
 use App\Actions\Cart\DeleteOrderAction;
 use App\Actions\Cart\GetCartAction;
+use App\Actions\CartItems\DeleteCartItemAction;
 use App\Actions\CartItems\UpdateCartItemAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderItemRequest;
 use App\Http\Resources\OrderItemResource;
 use App\Models\OrderItem;
@@ -41,7 +43,7 @@ class CartItemController extends Controller
         if ($cart->id !== $item->order_id) {
             return response()->json(['message' => 'Item not found'], 404);
         }
-        (new DeleteOrderAction())->execute($cart);
+        (new DeleteCartItemAction())->execute($cart, $item);
         return response()->json(['message' => 'deleted entity'], 200);
     }
 }

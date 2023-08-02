@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\Users\CreateUserAction;
 use App\Actions\Users\UpdateUserAction;
 use App\Criterias\Common\WhereCriteria;
+use App\Domains\Auth\Models\User;
 use App\Enums\UserRolesEnum;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
-use App\Domains\Auth\Models\User;
 use App\Support\PaginationBuilder;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;

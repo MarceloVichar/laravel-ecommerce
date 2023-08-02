@@ -5,9 +5,13 @@ namespace App\Domains\Product\Models;
 use App\Domains\Shared\BaseProduct;
 use App\Models\Company;
 use App\Models\ProductCategory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends BaseProduct
 {
+
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'description',

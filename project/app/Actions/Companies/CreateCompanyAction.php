@@ -32,6 +32,8 @@ class CreateCompanyAction
             ]);
             $company->save();
 
+            $owner->update(['company_id' => $company->id]);
+
             DB::commit();
 
             return $company;

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\ProductsCategories\CreateProductCategoryAction;
 use App\Actions\ProductsCategories\UpdateProductCategoryAction;
 use App\Adapters\ProductCategoryAdapter;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductCategoryRequest;
 use App\Http\Resources\ProductCategoryResource;
 use App\Models\ProductCategory;

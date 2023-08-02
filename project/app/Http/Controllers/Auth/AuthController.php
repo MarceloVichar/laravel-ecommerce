@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Actions\Users\CreateUserAction;
 use App\Domains\Auth\Actions\LoginAction;
 use App\Domains\Auth\Adapters\LoginAdapter;
 use App\Domains\Auth\Adapters\RegisterAdapter;
 use App\Enums\UserRolesEnum;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
