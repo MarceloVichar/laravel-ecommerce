@@ -4,6 +4,9 @@ volumes:
   app-postgres-data:
     driver: local
 
+  app-postgres-test-data:
+    driver: local
+
 services:
   app:
     image: webdevops/php-nginx:8.1-alpine
@@ -25,5 +28,16 @@ services:
       - 5433:5432
     environment:
       - POSTGRES_DB=app_dev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=laraveldocker
+
+  postgres-test:
+    image: postgres:15-alpine
+    volumes:
+      - app-postgres-test-data:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_DB=app_test
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=laraveldocker

@@ -3,6 +3,7 @@
 namespace App\Domains\Auth\Models;
 
 use App\Models\Company;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,5 +50,10 @@ class User extends Authenticatable
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public static function newFactory()
+    {
+        return UserFactory::new();
     }
 }

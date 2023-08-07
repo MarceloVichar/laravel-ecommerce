@@ -24,7 +24,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'user not found'], 404);
         }
         if (!Hash::check($data->password, $user->password)) {
-            return response()->json(['message' => 'wrong password'], 403);
+            return response()->json(['message' => 'wrong password'], 422);
         }
         $token = $user->createToken('API TOKEN')->plainTextToken;
         return response()->json(['token' => $token], 200);
