@@ -13,9 +13,7 @@ class ProfileTest extends TestCaseFeature
         parent::setUp();
         $this->loginAsCustomer();
         $this->useActionsFromController(ProfileController::class);
-        $this->otherUser = User::factory()
-            ->admin()
-            ->create();
+
     }
 
     private function getCampaignResourceStructure(): array
@@ -63,8 +61,12 @@ class ProfileTest extends TestCaseFeature
 
     public function test_should_not_change_the_profile_if_it_was_from_an_existing_email()
     {
+        $otherUser = User::factory()
+            ->admin()
+            ->create();
+
         $data = [
-            'email' => $this->otherUser->email,
+            'email' => $otherUser->email,
             'name' => 'joaozinho',
         ];
 
