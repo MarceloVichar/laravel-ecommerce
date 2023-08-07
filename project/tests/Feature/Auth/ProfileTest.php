@@ -18,8 +18,8 @@ class ProfileTest extends TestCaseFeature
             ->create();
     }
 
-     private function getCampaignResourceStructure(): array
-     {
+    private function getCampaignResourceStructure(): array
+    {
         return [
             'id', 'name', 'email', 'role',
         ];
@@ -33,7 +33,7 @@ class ProfileTest extends TestCaseFeature
             ->assertJsonStructure($this->getCampaignResourceStructure());
     }
 
-     public function test_should_update_profile()
+    public function test_should_update_profile()
     {
         $data = [
             'email' => 'joaozinho@email.com',
@@ -47,7 +47,7 @@ class ProfileTest extends TestCaseFeature
 
     }
 
-     public function test_should_update_profile_when_no_update_email()
+    public function test_should_update_profile_when_no_update_email()
     {
         $data = [
             'email' => $this->currentUser->email,
