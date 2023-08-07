@@ -16,7 +16,7 @@ class ProfileTest extends TestCaseFeature
 
     }
 
-    private function getCampaignResourceStructure(): array
+    private function getuserResourceStructure(): array
     {
         return [
             'id', 'name', 'email', 'role',
@@ -28,7 +28,7 @@ class ProfileTest extends TestCaseFeature
         $this->getJson($this->controllerAction('show'))
             ->assertSuccessful()
             ->assertStatus(200)
-            ->assertJsonStructure($this->getCampaignResourceStructure());
+            ->assertJsonStructure($this->getuserResourceStructure());
     }
 
     public function test_should_update_profile()
@@ -41,7 +41,7 @@ class ProfileTest extends TestCaseFeature
         $response = $this->putJson($this->controllerAction('update'), $data);
 
         $response->assertStatus(200);
-        $response->assertJsonStructure($this->getCampaignResourceStructure());
+        $response->assertJsonStructure($this->getuserResourceStructure());
 
     }
 
@@ -55,7 +55,7 @@ class ProfileTest extends TestCaseFeature
         $response = $this->putJson($this->controllerAction('update'), $data);
 
         $response->assertOk();
-        $response->assertJsonStructure($this->getCampaignResourceStructure());
+        $response->assertJsonStructure($this->getuserResourceStructure());
 
     }
 
